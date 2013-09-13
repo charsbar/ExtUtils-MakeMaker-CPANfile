@@ -3,6 +3,7 @@ use warnings;
 use File::Temp;
 use Test::More;
 
+plan skip_all => 'this is an author test.' unless $ENV{AUTHOR_TESTING};
 plan skip_all => 'requires WorePAN' unless eval { require WorePAN; WorePAN->VERSION(0.04); 1 };
 
 my @targets = qw(
