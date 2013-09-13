@@ -17,6 +17,7 @@ eval {
       use warnings;
       use ExtUtils::MakeMaker;
       use ExtUtils::MakeMaker::CPANfile;
+      print "# EUMM version: ", $ExtUtils::MakeMaker::VERSION, "\n";
       WriteMakefile(
         NAME => 'Test::EUMM::CPANfile',
         AUTHOR => 'Test',
