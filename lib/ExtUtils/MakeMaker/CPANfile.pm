@@ -67,7 +67,7 @@ sub import {
 
 sub _eumm {
   my $version = shift;
-  eval ExtUtils::MakeMaker->VERSION($version) ? 1 : 0;
+  eval { ExtUtils::MakeMaker->VERSION($version) } ? 1 : 0;
 }
 
 sub _get {
