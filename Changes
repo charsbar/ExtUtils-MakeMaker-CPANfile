@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils-MakeMaker-CPANfile
 
+0.02  2013/09/13
+    - fixed EUMM version check (HIROSE++)
+
 0.01  2013/09/12
     - original version
 
