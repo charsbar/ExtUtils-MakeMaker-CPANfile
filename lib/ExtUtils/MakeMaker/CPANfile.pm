@@ -54,6 +54,36 @@ sub import {
       );
 
       # XXX: better to use also META_MERGE when applicable?
+
+      # As a small bonus, remove params that the installed version
+      # of EUMM doesn't know, so that we can always write them
+      # in Makefile.PL without caring about EUMM version.
+      # (EUMM dies if it finds unknown parameters.)
+      # As EUMM 6.30 is our prereq, we can safely ignore the keys
+      # defined before 6.30.
+      {
+        last if _eumm('6.66_03');
+        if (my $r = delete $params{TEST_REQUIRES}) {
+          _merge(\%params, $r, 'BUILD_REQUIRES');
+        }
+        last if _eumm('6.56');
+        if (my $r = delete $params{BUILD_REQUIRES}) {
+          _merge(\%params, $r, 'PREREQ_PM');
+        }
+
+        last if _eumm('6.52');
+        delete $params{CONFIGURE_REQUIRES};
+
+        last if _eumm('6.47_01');
+        delete $params{MIN_PERL_VERSION};
+
+        last if _eumm('6.45_01');
+        delete $params{META_ADD};
+        delete $params{META_MERGE};
+
+        last if _eumm('6.30_01');
+        delete $params{LICENSE};
+      }
     }
 
     $orig->(%params);
