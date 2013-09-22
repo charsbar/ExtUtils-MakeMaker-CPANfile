@@ -123,7 +123,6 @@ ExtUtils::MakeMaker::CPANfile - cpanfile support for EUMM
 =head1 SYNOPSIS
 
     # Makefile.PL
-    use ExtUtils::MakeMaker;
     use ExtUtils::MakeMaker::CPANfile;
     
     WriteMakefile(
@@ -141,7 +140,8 @@ ExtUtils::MakeMaker::CPANfile - cpanfile support for EUMM
 
 ExtUtils::MakeMaker::CPANfile loads C<cpanfile> in your distribution
 and modifies parameters for C<WriteMakefile> in your Makefile.PL.
-Just use it after L<ExtUtils::MakeMaker>, and prepare C<cpanfile>.
+Just use it instead of L<ExtUtils::MakeMaker> (which should be
+loaded internally), and prepare C<cpanfile>.
 
 =head1 LIMITATION
 
