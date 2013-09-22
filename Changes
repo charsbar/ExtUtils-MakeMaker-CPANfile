@@ -1,5 +1,11 @@
 Revision history for Perl extension ExtUtils-MakeMaker-CPANfile
 
+0.03  2013/09/22
+    - fixed to remove unknown parameters to avoid warnings
+    - lowered the minimum required version of EUMM to conform to
+      Lancaster consensus, though you need better EUMM to release
+      a distribution properly.
+
 0.02  2013/09/13
     - fixed EUMM version check (HIROSE++)
 
