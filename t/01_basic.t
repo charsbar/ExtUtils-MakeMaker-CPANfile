@@ -25,9 +25,13 @@ eval {
         MIN_PERL_VERSION => '5.008001', # Lancaster consensus
         META_ADD => {},
         META_MERGE => {},
+        CONFIGURE_REQUIRES => {},
+        BUILD_REQUIRES => {},
+        TEST_REQUIRES => {},
       );
 MK_END
   }
+note do { local $/; open my $fh, '<', "$testdir/Makefile.PL"; <$fh> };
   { # generate cpanfile
     open my $fh, '>', "$testdir/cpanfile" or die;
     print $fh <<'CF_END';
