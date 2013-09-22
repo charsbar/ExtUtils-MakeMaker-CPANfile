@@ -20,7 +20,7 @@ eval {
       WriteMakefile(
         NAME => 'Test::EUMM::CPANfile',
         AUTHOR => 'Test',
-        # The following should not kill EUMM even if it's old
+        # The following should not let EUMM warn even if it's old
         LICENSE => 'perl',
         MIN_PERL_VERSION => '5.008001', # Lancaster consensus
         META_ADD => {},

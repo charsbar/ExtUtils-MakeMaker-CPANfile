@@ -58,7 +58,7 @@ sub import {
       # As a small bonus, remove params that the installed version
       # of EUMM doesn't know, so that we can always write them
       # in Makefile.PL without caring about EUMM version.
-      # (EUMM dies if it finds unknown parameters.)
+      # (EUMM warns if it finds unknown parameters.)
       # As EUMM 6.30 is our prereq, we can safely ignore the keys
       # defined before 6.30.
       {
