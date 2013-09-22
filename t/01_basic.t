@@ -35,7 +35,7 @@ note do { local $/; open my $fh, '<', "$testdir/Makefile.PL"; <$fh> };
   { # generate cpanfile
     open my $fh, '>', "$testdir/cpanfile" or die;
     print $fh <<'CF_END';
-      requires 'ExtUtils::MakeMaker', 6.66;
+      requires 'ExtUtils::MakeMaker', 6.17;
 
       on configure => sub {
         requires 'ExtUtils::MakeMaker', 6.30;
