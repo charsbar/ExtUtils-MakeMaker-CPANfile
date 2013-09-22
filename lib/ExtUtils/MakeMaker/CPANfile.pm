@@ -59,8 +59,8 @@ sub import {
       # of EUMM doesn't know, so that we can always write them
       # in Makefile.PL without caring about EUMM version.
       # (EUMM warns if it finds unknown parameters.)
-      # As EUMM 6.30 is our prereq, we can safely ignore the keys
-      # defined before 6.30.
+      # As EUMM 6.17 is our prereq, we can safely ignore the keys
+      # defined before 6.17.
       {
         last if _eumm('6.66_03');
         if (my $r = delete $params{TEST_REQUIRES}) {
@@ -173,9 +173,20 @@ and modifies parameters for C<WriteMakefile> in your Makefile.PL.
 Just use it instead of L<ExtUtils::MakeMaker> (which should be
 loaded internally), and prepare C<cpanfile>.
 
+As of version 0.03, ExtUtils::MakeMaker::CPANfile also removes
+WriteMakefile parameters that the installed version of
+ExtUtils::MakeMaker doesn't know, to avoid warnings.
+
 =head1 LIMITATION
 
 As of this writing, complex version ranges are simply ignored.
+
+=head1 FOR MODULE AUTHORS
+
+Thoguh the minimum version requirement of ExtUtils::MakeMaker is
+arbitrary set to 6.17 (the one bundled in Perl 5.8.1), you need
+at least EUMM 6.52 (with CONFIGURE_REQUIRES support) when you
+release a distribution.
 
 =head1 LICENSE
 
