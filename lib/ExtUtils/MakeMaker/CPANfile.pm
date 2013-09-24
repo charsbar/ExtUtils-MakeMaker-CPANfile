@@ -7,7 +7,7 @@ use File::Spec::Functions qw/catfile rel2abs/;
 use Module::CPANfile;
 use version;
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 sub import {
   my $class = shift;

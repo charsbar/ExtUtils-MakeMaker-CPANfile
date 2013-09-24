@@ -1,5 +1,11 @@
 Revision history for Perl extension ExtUtils-MakeMaker-CPANfile
 
+0.04  2013/09/24
+    - fixed to see if cpanfile is available in the same directory
+      as Makefile.PL, and exit (or return) if not.
+    - bumped up the version of EUMM::CPANfile set in
+      configure_requires.
+
 0.03  2013/09/22
     - fixed to remove unknown parameters to avoid warnings
     - lowered the minimum required version of EUMM to conform to
