@@ -54,7 +54,7 @@ sub import {
       # Add myself to configure requires (if possible)
       _merge(
          \%params,
-         {'ExtUtils::MakeMaker::CPANfile' => 0},
+         {'ExtUtils::MakeMaker::CPANfile' => $VERSION},
          _eumm('6.52') ? 'CONFIGURE_REQUIRES' : undef,
       );
 
