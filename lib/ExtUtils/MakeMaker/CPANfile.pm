@@ -19,7 +19,7 @@ sub import {
     my ($caller, $file, $line) = caller;
     (my $root = rel2abs($file)) =~ s/Makefile\.PL$// or return;
 
-    if (my $file = eval { Module::CPANfile->load(catfile($root, "cpanfile") }) {
+    if (my $file = eval { Module::CPANfile->load(catfile($root, "cpanfile")) }) {
       my $prereqs = $file->prereqs;
 
       # Runtime requires => PREREQ_PM
