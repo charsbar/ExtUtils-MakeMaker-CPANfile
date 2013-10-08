@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils-MakeMaker-CPANfile
 
+0.05  2013/10/08
+    - made Makefile.PL-detection case-insensitive
+
 0.04  2013/09/24
     - fixed to see if cpanfile is available in the same directory
       as Makefile.PL, and exit (or return) if not.
