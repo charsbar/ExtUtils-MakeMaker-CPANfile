@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils-MakeMaker-CPANfile
 
+0.06  2014/04/08
+    - set dynamic_config to false by default
+
 0.05  2013/10/08
     - made Makefile.PL-detection case-insensitive
 
