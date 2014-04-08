@@ -58,6 +58,12 @@ sub import {
          _eumm('6.52') ? 'CONFIGURE_REQUIRES' : undef,
       );
 
+      # Set dynamic_config to 0 if not set explicitly
+      if (!exists $params{META_ADD}{dynamic_config} &&
+          !exists $params{META_MERGE}{dynamic_config}) {
+          $params{META_MERGE}{dynamic_config} = 0;
+      }
+
       # XXX: better to use also META_MERGE when applicable?
 
       # As a small bonus, remove params that the installed version
@@ -187,7 +193,19 @@ ExtUtils::MakeMaker doesn't know, to avoid warnings.
 
 =head1 LIMITATION
 
+=head2 complex version ranges
+
 As of this writing, complex version ranges are simply ignored.
+
+=head2 dynamic config
+
+Strictly speaking, C<cpanfile> is a Perl script, and may have some
+conditions in it. That said, you don't need to run Makefile.PL
+to determine prerequisites in most cases. Hence, as of 0.06,
+ExtUtils::MakeMaker::CPANfile sets C<dynamic_config> to false
+by default. If you do need a CPAN installer to run Makefile.PL
+to customize prerequisites dynamically, set C<dynamic_config>
+to true explicitly (via META_ADD/META_MERGE).
 
 =head1 FOR MODULE AUTHORS
 
