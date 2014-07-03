@@ -209,7 +209,7 @@ to true explicitly (via META_ADD/META_MERGE).
 
 =head1 FOR MODULE AUTHORS
 
-Thoguh the minimum version requirement of ExtUtils::MakeMaker is
+Though the minimum version requirement of ExtUtils::MakeMaker is
 arbitrary set to 6.17 (the one bundled in Perl 5.8.1), you need
 at least EUMM 6.52 (with CONFIGURE_REQUIRES support) when you
 release a distribution.
