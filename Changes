@@ -1,5 +1,8 @@
 Revision history for Perl extension ExtUtils-MakeMaker-CPANfile
 
+0.07  2015/12/09
+    - supported recommends, suggests, conflicts
+
 0.06  2014/04/08
     - set dynamic_config to false by default
 
