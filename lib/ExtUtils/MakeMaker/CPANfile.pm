@@ -64,6 +64,26 @@ sub import {
           $params{META_MERGE}{dynamic_config} = 0;
       }
 
+      # recommends, suggests, conflicts
+      my $requires_2_0;
+      for my $type (qw/recommends suggests conflicts/) {
+          for my $phase (qw/configure build test runtime develop/) {
+              my %tmp = %{$params{META_MERGE}{prereqs}{$phase} || {}};
+              _merge(
+                  \%tmp,
+                  _get($prereqs, $phase, $type),
+                  $type,
+              );
+              if ($tmp{$type}) {
+                  $params{META_MERGE}{prereqs}{$phase} = \%tmp;
+                  $requires_2_0 = 1;
+              }
+          }
+      }
+      if ($requires_2_0) { # for better recommends support
+          $params{META_MERGE}{"meta-spec"} ||= {version => 2};
+      }
+
       # XXX: better to use also META_MERGE when applicable?
 
       # As a small bonus, remove params that the installed version
