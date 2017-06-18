@@ -23,11 +23,18 @@ eval {
         # The following should not let EUMM warn even if it's old
         LICENSE => 'perl',
         MIN_PERL_VERSION => '5.008001', # Lancaster consensus
-        META_ADD => {},
+        META_ADD => {
+          resources => {
+            repository => 'https://github.com/charsbar/Test-EUMM-CPANfile',
+          },
+        },
         META_MERGE => {},
         CONFIGURE_REQUIRES => {},
         BUILD_REQUIRES => {},
         TEST_REQUIRES => {},
+        PREREQ_PM => {
+          'ExtUtils::Manifest' => '0',
+        },
       );
 MK_END
   }
@@ -36,6 +43,7 @@ note do { local $/; open my $fh, '<', "$testdir/Makefile.PL"; <$fh> };
     open my $fh, '>', "$testdir/cpanfile" or die;
     print $fh <<'CF_END';
       requires 'ExtUtils::MakeMaker', '6.17';
+      recommends 'Exporter';
 
       on configure => sub {
         requires 'ExtUtils::MakeMaker', '6.30';
@@ -64,7 +72,13 @@ my $makefile = do { local $/; open my $fh, '<', "Makefile"; <$fh> };
 ok $makefile && $makefile =~ /(?:_REQUIRES|PREREQ_PM)\s*=>\s*{\s*[^{]*ExtUtils::MakeMaker\s*=>\s*q\[/, "EUMM is listed as some kind of prereqs";
 ok $makefile && $makefile =~ /(?:_REQUIRES|PREREQ_PM)\s*=>\s*{\s*[^{]*Test::More\s*=>\s*q\[/, "Test::More is listed as some kind of prereqs";
 
-note do { local $/; open my $fh, '<', "$testdir/MYMETA.json"; <$fh> };
+my $mymeta = do { local $/; open my $fh, '<', "$testdir/MYMETA.json"; <$fh> };
+ok $mymeta && $mymeta =~ /github\.com/, "repository is kept intact";
+ok $mymeta && $mymeta =~ /Exporter/, "Exporter is kept intact";
+ok $mymeta && $mymeta =~ /ExtUtils::Manifest/, "ExtUtils::Manifest is kept intact";
+
+note $mymeta;
+
 done_testing;
 
 END {
