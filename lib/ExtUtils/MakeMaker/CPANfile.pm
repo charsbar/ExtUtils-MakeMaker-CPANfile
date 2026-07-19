@@ -55,7 +55,7 @@ sub import {
       # Add myself to configure requires (if possible)
       _merge(
          \%params,
-         {'ExtUtils::MakeMaker::CPANfile' => $VERSION},
+         _req('ExtUtils::MakeMaker::CPANfile' => $VERSION),
          _eumm('6.52') ? 'CONFIGURE_REQUIRES' : undef,
       );
 
@@ -160,6 +160,12 @@ sub _eumm {
 sub _get {
   my $prereqs = shift;
   eval { $prereqs->requirements_for(@_) };
+}
+
+sub _req {
+  my $requires = CPAN::Meta::Requirements->new;
+  $requires->add_string_requirement(@_);
+  $requires;
 }
 
 sub _merge {
