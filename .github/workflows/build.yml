@@ -1,0 +1,34 @@
+name: build
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+  pull_request:
+
+jobs:
+  perl:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        perl-version:
+          - '5.8-buster'
+          - 'latest'
+
+    container:
+      image: perl:${{ matrix.perl-version }}
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: perl -V
+        run: perl -V
+      - name: Install Test::More
+        if: ${{ matrix.perl-version == '5.8-buster' }}
+        run: curl -sL https://cpanmin.us | perl - Test::More@0.96
+      - name: Install dependencies
+        run: curl -sL https://cpanmin.us | perl - --installdeps .
+      - name: Run tests
+        run: perl Makefile.PL && make && make test
