@@ -28,3 +28,4 @@ MYMETA.*
 /ExtUtils-MakeMaker-CPANfile-*
 
 t/tmp/
+pm_to_blib
